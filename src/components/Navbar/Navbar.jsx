@@ -1,12 +1,6 @@
-import React, { useState } from 'react';
-import "./Nav.css";
-
-const NAV_LINKS = [
-  { label: "Home", href: "#" },
-  { label: "Produtos", href: "#" },
-  { label: "Categorias", href: "#" },
-  { label: "Meus Pedidos", href: "#" },
-];
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import "./Navbar.css";
 
 const Navbar = () => {
   const [active, setActive] = useState("Home");
@@ -15,20 +9,47 @@ const Navbar = () => {
     <nav className="nav">
       <div className="container">
         <ul className="nav__list">
-          {NAV_LINKS.map((link) => (
-            <li key={link.label} className="nav__item">
-              <a
-                href={link.href}
-                className={`nav__link ${active === link.label ? "nav__link--active" : ""}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setActive(link.label);
-                }}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
+          
+          <li className="nav__item">
+            <Link
+              to="/"
+              className={`nav__link ${active === "Home" ? "nav__link--active" : ""}`}
+              onClick={() => setActive("Home")}
+            >
+              Home
+            </Link>
+          </li>
+
+          <li className="nav__item">
+            <Link
+              to="/produtos"
+              className={`nav__link ${active === "Produtos" ? "nav__link--active" : ""}`}
+              onClick={() => setActive("Produtos")}
+            >
+              Produtos
+            </Link>
+          </li>
+
+          <li className="nav__item">
+            <Link
+              to="/categorias"
+              className={`nav__link ${active === "Categorias" ? "nav__link--active" : ""}`}
+              onClick={() => setActive("Categorias")}
+            >
+              Categorias
+            </Link>
+          </li>
+
+          <li className="nav__item">
+            <Link
+              to="/pedidos"
+              className={`nav__link ${active === "Meus Pedidos" ? "nav__link--active" : ""}`}
+              onClick={() => setActive("Meus Pedidos")}
+            >
+              Meus Pedidos
+            </Link>
+          </li>
+
         </ul>
       </div>
     </nav>
